@@ -3,12 +3,20 @@ import {
 	TypingText,
 	TypingTextCursor,
 } from "@/components/animate-ui/primitives/texts/typing";
-import { ArrowDown, Mail } from "@/components/ui/icons";
+import { Mail } from "@/components/ui/icons";
+import { Spotlight } from "@/components/ui/spotlight";
 
 export function Hero() {
 	const { t } = useTranslation();
 	return (
 		<section className="relative flex min-h-screen items-center justify-center px-4 pt-16 pb-16 sm:px-6 lg:px-8">
+			{/* Spotlight effect */}
+			<Spotlight
+				className="bg-primary/30 blur-3xl"
+				size={400}
+				springOptions={{ bounce: 0.2, duration: 0.3 }}
+			/>
+
 			{/* Gradient overlay */}
 			<div className="pointer-events-none absolute inset-0 bg-linear-to-b from-primary/5 via-transparent to-transparent" />
 

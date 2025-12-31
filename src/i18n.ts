@@ -48,7 +48,7 @@ const resources = {
 			"projects.code": "Código",
 			"projects.demo": "Demo",
 			"projects.viewMore": "Ver más proyectos en GitHub",
-			"projects.project1.title": "App Microservicios",
+			"projects.project1.title": "ITS-Microservicio + Frontend Angular",
 			"projects.project1.description":
 				"Arquitectura de microservicios para un sistema de gestión empresarial desarrollado como proyecto académico. Implementa tres servicios independientes: gestión de facturas, productos y usuarios, cada uno con su propia base de datos (PostgreSQL, MongoDB, MySQL) siguiendo principios de arquitectura distribuida.",
 			"projects.project2.title": "React Native Ricky Morty App",
@@ -57,9 +57,6 @@ const resources = {
 			"projects.project3.title": "My Notion",
 			"projects.project3.description":
 				"Clon personal de Notion construido con React, TypeScript y Vite. Aplicación web que replica las funcionalidades principales de gestión de notas y organización, implementando un editor de texto enriquecido con componentes modulares y una interfaz limpia e intuitiva.",
-			"projects.project4.title": "Frontend Microservicios",
-			"projects.project4.description":
-				"Aplicación frontend desarrollada con Angular para consumir e integrar los microservicios de gestión empresarial (facturas, productos y usuarios). Interfaz de usuario moderna que conecta con la arquitectura de microservicios NestJS, proporcionando una experiencia completa de gestión administrativa.",
 
 			// Contact section
 			"contact.title": "Contacto",
@@ -129,7 +126,7 @@ const resources = {
 			"projects.code": "Code",
 			"projects.demo": "Demo",
 			"projects.viewMore": "View more projects on GitHub",
-			"projects.project1.title": "Microservices App",
+			"projects.project1.title": "ITS-Microservice + Frontend Angular",
 			"projects.project1.description":
 				"Microservices architecture for a business management system developed as an academic project. It implements three independent services: invoice, product, and user management, each with its own database (PostgreSQL, MongoDB, MySQL) following distributed architecture principles.",
 			"projects.project2.title": "React Native Rick & Morty App",
@@ -138,9 +135,6 @@ const resources = {
 			"projects.project3.title": "My Notion",
 			"projects.project3.description":
 				"Personal Notion clone built with React, TypeScript, and Vite. Web application that replicates the main features of note management and organization, implementing a rich text editor with modular components and a clean and intuitive interface.",
-			"projects.project4.title": "Microservices Frontend",
-			"projects.project4.description":
-				"Frontend application developed with Angular to consume and integrate business management microservices (invoices, products, and users). Modern user interface that connects with the NestJS microservices architecture, providing a complete administrative management experience.",
 
 			// Contact section
 			"contact.title": "Contact",

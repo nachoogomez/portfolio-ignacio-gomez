@@ -20,6 +20,8 @@ export function Proyects() {
 				"TypeScript",
 				"MySQL",
 				"MongoDB",
+				"Angular",
+				"RxJs",
 			],
 		},
 		{
@@ -35,13 +37,6 @@ export function Proyects() {
 			link: "https://github.com/nachoogomez/my-notion",
 			demo: "https://my-notion-lime.vercel.app/",
 			tags: ["React", "TypeScript", "Supabase", "shadcn/ui"],
-		},
-		{
-			title: t("projects.project4.title"),
-			description: t("projects.project4.description"),
-			link: "https://github.com/nachoogomez/frontend-angular",
-			demo: undefined,
-			tags: ["Angular", "TypeScript", "RxJs"],
 		},
 	];
 
