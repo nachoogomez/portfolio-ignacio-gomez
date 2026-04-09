@@ -2,27 +2,6 @@ import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Code2, Layers, Users, Zap } from "@/components/ui/icons";
 
-const languages = [
-	"JavaScript",
-	"TypeScript",
-	"Docker",
-	"PostgreSQL",
-	"MySQL",
-	"MongoDB",
-	"HTML/CSS",
-	"React",
-	"React Native",
-	"Expo",
-	"Tailwind",
-	"Node.js",
-	"NestJS",
-	"Express",
-	"Angular",
-	"Vue.js",
-	"AWS",
-	"Git",
-];
-
 export function AboutSection() {
 	const { t } = useTranslation();
 
@@ -122,25 +101,6 @@ export function AboutSection() {
 							</Card>
 						</div>
 					))}
-				</div>
-
-				{/* Languages Section */}
-				<div className="mt-16 animate-fade-in-up delay-800">
-					<h3 className="text-2xl font-bold mb-8 text-center">
-						{t("about.skills.title")}
-					</h3>
-					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-						{languages.map((language, index) => (
-							<div
-								key={language}
-								className={`animate-scale-in delay-${900 + index * 50}`}
-							>
-								<Card className="p-4 text-center hover:shadow-lg transition-all hover:scale-105 hover:border-primary/50">
-									<h4 className="font-semibold text-sm">{language}</h4>
-								</Card>
-							</div>
-						))}
-					</div>
 				</div>
 			</div>
 		</section>

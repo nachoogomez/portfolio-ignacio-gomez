@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
 import { Navbar } from "../components/Navbar";
 import { Proyects } from "../components/Proyects";
+import { SkillsSection } from "../components/Skills-section";
 
 // Lazy load ContactSection (incluye EmailJS)
 const ContactSection = lazy(() =>
@@ -18,8 +19,9 @@ export const Home = () => {
 			<Navbar />
 			<main>
 				<Hero />
-				<AboutSection />
+				<SkillsSection />
 				<Proyects />
+				<AboutSection />
 				<Suspense
 					fallback={
 						<section id="contact" className="py-20 bg-muted/30">

@@ -6,9 +6,10 @@ const resources = {
 		translation: {
 			// Hero section
 			"hero.greeting": "Hola, soy Ignacio Gomez",
+			"hero.greeting.prefix": "Hola, soy",
 			"hero.title": "Desarrollador Full Stack",
 			"hero.description":
-				"Estudiante de último año en Desarrollo Full Stack con experiencia en soporte IT. Especializado en MERN stack, arquitecturas de microservicios y AWS.",
+				"Desarrollador de software Full Stack con experiencia en soporte IT. Especializado en MERN stack, arquitecturas de microservicios y AWS.",
 			"hero.available": "Disponible para nuevas oportunidades",
 			"hero.connect": "Conectemos",
 			"hero.downloadCV": "Descargar CV",
@@ -30,6 +31,8 @@ const resources = {
 			"about.paragraph4":
 				"Busco mi primera oportunidad como desarrollador Junior o Trainee para seguir creciendo, enfrentar nuevos desafíos y aportar mi proactividad y capacidad de resolución de problemas a un equipo dinámico.",
 			"about.skills.title": "Skills",
+			"about.skills.label": "HABILIDADES TÉCNICAS",
+			"about.skills.subtitle": "Experticia que construye el futuro",
 			"about.skill1.title": "Desarrollo Full Stack",
 			"about.skill1.description":
 				"Dominio del stack MERN y experiencia con Vue.js, Angular y TypeScript",
@@ -45,6 +48,7 @@ const resources = {
 
 			// Projects section
 			"projects.title": "Proyectos Destacados",
+			"projects.featured": "Destacado",
 			"projects.code": "Código",
 			"projects.demo": "Demo",
 			"projects.viewMore": "Ver más proyectos en GitHub",
@@ -54,14 +58,14 @@ const resources = {
 			"projects.project2.title": "React Native Ricky Morty App",
 			"projects.project2.description":
 				"Aplicación móvil multiplataforma que consume la API de Rick and Morty para explorar el multiverso. Incluye exploración de personajes con filtros, sistema de favoritos con persistencia local, estadísticas del universo, gestión de conectividad y tema personalizable. Primera app completa con Expo.",
-			"projects.project3.title": "My Notion",
+			"projects.project3.title": "Quadra",
 			"projects.project3.description":
-				"Clon personal de Notion construido con React, TypeScript y Vite. Aplicación web que replica las funcionalidades principales de gestión de notas y organización, implementando un editor de texto enriquecido con componentes modulares y una interfaz limpia e intuitiva.",
+				"Workspace personal all-in-one que integra gestión de eventos (5 vistas de calendario), tablero kanban de tareas, editor de texto enriquecido con carpetas, y planificación de bloques semanales recurrentes. Dashboard centralizado con widgets. Autenticación con Supabase y rutas protegidas por middleware.",
 
 			// Contact section
-			"contact.title": "Contacto",
+			"contact.title": "Construyamos algo increíble juntos",
 			"contact.subtitle":
-				"¿Tienes un proyecto en mente? Me encantaría escuchar sobre él.",
+				"¿Tienes un proyecto en mente o buscas un perfil técnico para tu equipo? Hablemos de cómo puedo aportar valor a tu visión.",
 			"contact.name": "Nombre",
 			"contact.email": "Email",
 			"contact.message": "Mensaje",
@@ -71,10 +75,10 @@ const resources = {
 			"contact.error":
 				"Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.",
 			"contact.location": "Ubicación",
-			"contact.locationValue": "Argentina",
+			"contact.locationValue": "Argentina / Remoto",
 			"contact.namePlaceholder": "Tu nombre",
 			"contact.emailPlaceholder": "tu@email.com",
-			"contact.messagePlaceholder": "Cuéntame sobre tu proyecto...",
+			"contact.messagePlaceholder": "¿En qué puedo ayudarte?",
 
 			// Footer section
 			"footer.copyright": "© 2025 IG. Todos los derechos reservados.",
@@ -84,9 +88,10 @@ const resources = {
 		translation: {
 			// Hero section
 			"hero.greeting": "Hi, I'm Ignacio Gomez",
+			"hero.greeting.prefix": "Hi, I'm",
 			"hero.title": "Full Stack Developer",
 			"hero.description":
-				"Final year Full Stack Development student with IT support experience. Specialized in MERN stack, microservices architectures, and AWS.",
+				"Software developer Full Stack with IT support experience. Specialized in MERN stack, microservices architectures, and AWS.",
 			"hero.available": "Available for new opportunities",
 			"hero.connect": "Let's Connect",
 			"hero.downloadCV": "Download CV",
@@ -108,6 +113,8 @@ const resources = {
 			"about.paragraph4":
 				"I am looking for my first opportunity as a Junior or Trainee developer to continue growing, face new challenges and contribute my proactivity and problem-solving skills to a dynamic team.",
 			"about.skills.title": "Skills",
+			"about.skills.label": "TECHNICAL SKILLS",
+			"about.skills.subtitle": "Expertise that builds the future",
 			"about.skill1.title": "Full Stack Development",
 			"about.skill1.description":
 				"MERN stack mastery and experience with Vue.js, Angular and TypeScript",
@@ -123,6 +130,7 @@ const resources = {
 
 			// Projects section
 			"projects.title": "Featured Projects",
+			"projects.featured": "Featured",
 			"projects.code": "Code",
 			"projects.demo": "Demo",
 			"projects.viewMore": "View more projects on GitHub",
@@ -132,13 +140,14 @@ const resources = {
 			"projects.project2.title": "React Native Rick & Morty App",
 			"projects.project2.description":
 				"Multi-platform mobile application that consumes the Rick and Morty API to explore the multiverse. It includes character exploration with filters, favorites system with local persistence, universe statistics, connectivity management, and customizable theme. First complete app with Expo.",
-			"projects.project3.title": "My Notion",
+			"projects.project3.title": "Quadra",
 			"projects.project3.description":
-				"Personal Notion clone built with React, TypeScript, and Vite. Web application that replicates the main features of note management and organization, implementing a rich text editor with modular components and a clean and intuitive interface.",
+				"All-in-one personal workspace combining event management (5 calendar views), kanban task board, rich text editor with folder organization, and recurring weekly schedule planning. Centralized widget dashboard with Supabase authentication and middleware-protected routes.",
 
 			// Contact section
-			"contact.title": "Contact",
-			"contact.subtitle": "Have a project in mind? I'd love to hear about it.",
+			"contact.title": "Let's build something incredible together",
+			"contact.subtitle":
+				"Have a project in mind or looking for a technical profile for your team? Let's talk about how I can add value to your vision.",
 			"contact.name": "Name",
 			"contact.email": "Email",
 			"contact.message": "Message",
@@ -149,10 +158,10 @@ const resources = {
 			"contact.error":
 				"There was an error sending the message. Please try again.",
 			"contact.location": "Location",
-			"contact.locationValue": "Argentina",
+			"contact.locationValue": "Madrid, Spain / Remote",
 			"contact.namePlaceholder": "Your name",
 			"contact.emailPlaceholder": "your@email.com",
-			"contact.messagePlaceholder": "Tell me about your project...",
+			"contact.messagePlaceholder": "How can I help you?",
 
 			// Footer section
 			"footer.copyright": "© 2025 IG. All rights reserved.",

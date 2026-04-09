@@ -34,28 +34,88 @@ export function Proyects() {
 		{
 			title: t("projects.project3.title"),
 			description: t("projects.project3.description"),
-			link: "https://github.com/nachoogomez/my-notion",
-			demo: "https://my-notion-lime.vercel.app/",
-			tags: ["React", "TypeScript", "Supabase", "shadcn/ui"],
+			link: "https://github.com/nachoogomez/quadra",
+			demo: "https://getquadra.vercel.app/",
+			tags: ["NextJS", "TypeScript", "Supabase", "shadcn/ui"],
 		},
 	];
 
+	const featuredProject = projects.find((p) => p.demo);
+	const regularProjects = projects.filter((p) => !p.demo);
+
 	return (
 		<section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-			<div className="max-w-3xl mx-auto">
+			<div className="max-w-6xl mx-auto">
 				<h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-8">
 					{t("projects.title")}
 				</h2>
+
+				{/* Featured project — full width */}
+				{featuredProject && (
+					<Card className="p-8 mb-6 hover:bg-accent/50 transition-colors border-primary/20 hover:border-primary/40">
+						<div className="flex flex-col sm:flex-row sm:items-start gap-6">
+							<div className="flex-1 space-y-4">
+								<div className="flex flex-wrap items-center gap-3">
+									<span className="px-2.5 py-0.5 text-xs rounded-full bg-primary/10 text-primary font-medium border border-primary/20">
+										{t("projects.featured")}
+									</span>
+									<h3 className="font-bold text-2xl">
+										{featuredProject.title}
+									</h3>
+								</div>
+								<p className="text-muted-foreground leading-relaxed max-w-2xl">
+									{featuredProject.description}
+								</p>
+								<div className="flex flex-wrap gap-2">
+									{featuredProject.tags.map((tag) => (
+										<span
+											key={tag}
+											className="px-2 py-1 text-xs rounded bg-secondary text-secondary-foreground"
+										>
+											{tag}
+										</span>
+									))}
+								</div>
+								<div className="flex gap-3 pt-1">
+									<Button variant="outline" size="sm" asChild>
+										<a
+											href={featuredProject.link}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center gap-2"
+										>
+											<ExternalLink className="h-4 w-4" />
+											{t("projects.code")}
+										</a>
+									</Button>
+									{featuredProject.demo && (
+										<Button variant="default" size="sm" asChild>
+											<a
+												href={featuredProject.demo}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="inline-flex items-center gap-2"
+											>
+												<Eye className="h-4 w-4" />
+												{t("projects.demo")}
+											</a>
+										</Button>
+									)}
+								</div>
+							</div>
+						</div>
+					</Card>
+				)}
+
+				{/* Regular projects */}
 				<div className="grid gap-6 sm:grid-cols-2 mx-auto">
-					{projects.map((project, index) => (
+					{regularProjects.map((project) => (
 						<Card
-							key={index}
+							key={project.title}
 							className="p-6 hover:bg-accent/50 transition-colors flex flex-col h-full"
 						>
 							<div className="flex-1 space-y-3">
-								<div className="flex items-start justify-between">
-									<h3 className="font-semibold text-lg">{project.title}</h3>
-								</div>
+								<h3 className="font-semibold text-lg">{project.title}</h3>
 								<p className="text-sm text-muted-foreground leading-relaxed">
 									{project.description}
 								</p>
@@ -82,28 +142,11 @@ export function Proyects() {
 										{t("projects.code")}
 									</a>
 								</Button>
-								{project.demo && (
-									<Button
-										variant="default"
-										size="sm"
-										asChild
-										className="flex-1"
-									>
-										<a
-											href={project.demo}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="inline-flex items-center gap-2 justify-center"
-										>
-											<Eye className="h-4 w-4" />
-											{t("projects.demo")}
-										</a>
-									</Button>
-								)}
 							</div>
 						</Card>
 					))}
 				</div>
+
 				<div className="mt-8 text-center">
 					<Button variant="outline" asChild>
 						<a
