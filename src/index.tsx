@@ -5,8 +5,8 @@ import index from "./index.html";
 const server = serve({
 	routes: {
 		// Serve static files from public directory
-		"/Ignacio_Gomez_Resume.pdf": new Response(
-			file(path.join(process.cwd(), "public", "Ignacio_Gomez_Resume.pdf")),
+		"/CV_Ignacio_Gomez_EN.pdf": new Response(
+			file(path.join(process.cwd(), "public", "CV_Ignacio_Gomez_EN.pdf")),
 		),
 
 		// Serve index.html for all other routes

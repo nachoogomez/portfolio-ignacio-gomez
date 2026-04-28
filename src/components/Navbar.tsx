@@ -16,10 +16,9 @@ export function Navbar() {
 	const { i18n } = useTranslation();
 
 	const handleDownloadCV = () => {
-		// Aquí puedes poner la ruta real de tu CV
 		const link = document.createElement("a");
-		link.href = "/Ignacio_Gomez_Resume.pdf";
-		link.download = "Ignacio_Gomez_Resume.pdf";
+		link.href = "/CV_Ignacio_Gomez_EN.pdf";
+		link.download = "CV_Ignacio_Gomez_EN.pdf";
 		link.click();
 	};
 

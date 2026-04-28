@@ -51,6 +51,7 @@ const resources = {
 			"projects.featured": "Destacado",
 			"projects.code": "Código",
 			"projects.demo": "Demo",
+			"projects.visit": "Visitar sitio",
 			"projects.viewMore": "Ver más proyectos en GitHub",
 			"projects.project1.title": "ITS-Microservicio + Frontend Angular",
 			"projects.project1.description":
@@ -61,6 +62,12 @@ const resources = {
 			"projects.project3.title": "Quadra",
 			"projects.project3.description":
 				"Workspace personal all-in-one que integra gestión de eventos (5 vistas de calendario), tablero kanban de tareas, editor de texto enriquecido con carpetas, y planificación de bloques semanales recurrentes. Dashboard centralizado con widgets. Autenticación con Supabase y rutas protegidas por middleware.",
+			"projects.project4.title": "JL Group — Landing Page Freelance",
+			"projects.project4.description":
+				"Proyecto freelance: landing page corporativa responsive para un cliente real, entregada en producción.",
+			"projects.project5.title": "Programadores Argentina",
+			"projects.project5.description":
+				"Contribución al rediseño del sitio principal de la plataforma — la comunidad de desarrolladores más grande de Argentina — implementando y mejorando múltiples features de frontend.",
 
 			// Contact section
 			"contact.title": "Construyamos algo increíble juntos",
@@ -133,6 +140,7 @@ const resources = {
 			"projects.featured": "Featured",
 			"projects.code": "Code",
 			"projects.demo": "Demo",
+			"projects.visit": "Visit site",
 			"projects.viewMore": "View more projects on GitHub",
 			"projects.project1.title": "ITS-Microservice + Frontend Angular",
 			"projects.project1.description":
@@ -143,6 +151,12 @@ const resources = {
 			"projects.project3.title": "Quadra",
 			"projects.project3.description":
 				"All-in-one personal workspace combining event management (5 calendar views), kanban task board, rich text editor with folder organization, and recurring weekly schedule planning. Centralized widget dashboard with Supabase authentication and middleware-protected routes.",
+			"projects.project4.title": "JL Group — Freelance Landing Page",
+			"projects.project4.description":
+				"Freelance project: responsive corporate landing page for a real client, delivered in production.",
+			"projects.project5.title": "Programadores Argentina",
+			"projects.project5.description":
+				"Contributed to the redesign of the platform's main site — Argentina's largest developer community — implementing and improving multiple frontend features.",
 
 			// Contact section
 			"contact.title": "Let's build something incredible together",

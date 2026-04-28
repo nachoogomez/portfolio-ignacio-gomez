@@ -6,12 +6,20 @@ import { ExternalLink, Eye } from "@/components/ui/icons";
 export function Proyects() {
 	const { t } = useTranslation();
 
-	const projects = [
+	type Project = {
+		title: string;
+		description: string;
+		link?: string;
+		demo?: string;
+		tags: string[];
+		featured?: boolean;
+	};
+
+	const projects: Project[] = [
 		{
 			title: t("projects.project1.title"),
 			description: t("projects.project1.description"),
 			link: "https://github.com/nachoogomez/its-microservice",
-			demo: undefined,
 			tags: [
 				"Nestjs",
 				"Express",
@@ -28,7 +36,6 @@ export function Proyects() {
 			title: t("projects.project2.title"),
 			description: t("projects.project2.description"),
 			link: "https://github.com/nachoogomez/MultiversoHub-Rick-Morty-",
-			demo: undefined,
 			tags: ["React Native", "Expo", "Tailwind", "TypeScript", "AsyncStorage"],
 		},
 		{
@@ -37,11 +44,34 @@ export function Proyects() {
 			link: "https://github.com/nachoogomez/quadra",
 			demo: "https://getquadra.vercel.app/",
 			tags: ["NextJS", "TypeScript", "Supabase", "shadcn/ui"],
+			featured: true,
+		},
+		{
+			title: t("projects.project4.title"),
+			description: t("projects.project4.description"),
+			demo: "https://jlgroup.com.ar",
+			tags: ["React", "Vite", "Tailwind CSS"],
+		},
+		{
+			title: t("projects.project5.title"),
+			description: t("projects.project5.description"),
+			demo: "https://programadoresargentina.com",
+			tags: [
+				"NextJS",
+				"React",
+				"TypeScript",
+				"Tailwind CSS",
+				"Prisma",
+				"NextAuth",
+				"MercadoPago",
+				"Zod",
+				"Nodemailer",
+			],
 		},
 	];
 
-	const featuredProject = projects.find((p) => p.demo);
-	const regularProjects = projects.filter((p) => !p.demo);
+	const featuredProject = projects.find((p) => p.featured);
+	const regularProjects = projects.filter((p) => !p.featured);
 
 	return (
 		<section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -131,17 +161,42 @@ export function Proyects() {
 								</div>
 							</div>
 							<div className="flex gap-2 mt-4">
-								<Button variant="outline" size="sm" asChild className="flex-1">
-									<a
-										href={project.link}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="inline-flex items-center gap-2 justify-center"
+								{project.link && (
+									<Button
+										variant="outline"
+										size="sm"
+										asChild
+										className="flex-1"
 									>
-										<ExternalLink className="h-4 w-4" />
-										{t("projects.code")}
-									</a>
-								</Button>
+										<a
+											href={project.link}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center gap-2 justify-center"
+										>
+											<ExternalLink className="h-4 w-4" />
+											{t("projects.code")}
+										</a>
+									</Button>
+								)}
+								{project.demo && (
+									<Button
+										variant={project.link ? "default" : "outline"}
+										size="sm"
+										asChild
+										className="flex-1"
+									>
+										<a
+											href={project.demo}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center gap-2 justify-center"
+										>
+											<Eye className="h-4 w-4" />
+											{t("projects.visit")}
+										</a>
+									</Button>
+								)}
 							</div>
 						</Card>
 					))}

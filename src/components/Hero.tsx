@@ -148,8 +148,8 @@ export function Hero() {
 								<span className="font-light opacity-80">+</span>
 							</a>
 							<a
-								href="/CV-Ignacio-Gomez.pdf"
-								download="CV-Ignacio-Gomez.pdf"
+								href="/CV_Ignacio_Gomez_EN.pdf"
+								download="CV_Ignacio_Gomez_EN.pdf"
 								className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-all hover:scale-105"
 							>
 								<Download className="h-4 w-4" />
