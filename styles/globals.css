@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+/* Font files are loaded via <link rel="preconnect"> + <link rel="stylesheet"> in index.html.
+   Keep the families listed there in sync with the --font-* tokens below. */
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
@@ -6,6 +7,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  color-scheme: light;
+
+  /* Hero grid overlay — must be readable on both themes. */
+  --grid-line: hsl(220 20% 13% / 0.07);
+
   /* Warm off-white — easy on the eyes, not harsh pure white */
   --background: hsl(38 28% 96%);
   --foreground: hsl(220 20% 13%);
@@ -43,6 +49,10 @@
 }
 
 .dark {
+  color-scheme: dark;
+
+  --grid-line: hsl(0 0% 100% / 0.05);
+
   --background: hsl(240 10% 3.9%);
   --foreground: hsl(0 0% 98%);
   --card: hsl(240 10% 3.9%);
@@ -78,6 +88,12 @@
 }
 
 @theme inline {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, serif;
+  --font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -147,6 +163,22 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* The navbar is fixed at h-16; keep anchored sections clear of it. */
+  section[id],
+  main[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  label {
+    touch-action: manipulation;
   }
 }
 
@@ -327,21 +359,22 @@
   animation-delay: 1.25s;
 }
 
-/* Respect user preferences */
+/* Respect user preferences.
+   Catch-all rather than an allowlist: it also covers Tailwind utilities we do not
+   author here (animate-ping, hover:scale-*, transition-*), which the previous
+   per-class list silently missed. `forwards` animations still land on their end state. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .animate-fade-in-up,
-  .animate-fade-in,
-  .animate-scale-in,
-  .animate-bounce-y,
-  .animate-fade-in-left,
-  .animate-fade-in-right,
-  .animate-cursor-blink {
-    animation: none;
-    opacity: 1;
-    transform: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
 }

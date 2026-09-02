@@ -5,6 +5,7 @@ import {
 } from "@/components/animate-ui/primitives/texts/typing";
 import { Download, Mail } from "@/components/ui/icons";
 import { Spotlight } from "@/components/ui/spotlight";
+import { CV_FILENAME, CV_PATH } from "@/lib/cv";
 
 const techBadges = [
 	{ label: "TypeScript", color: "bg-blue-400" },
@@ -21,7 +22,7 @@ export function Hero() {
 	const { t } = useTranslation();
 
 	return (
-		<section className="relative flex min-h-screen items-center px-4 pt-16 pb-16 sm:px-6 lg:px-8">
+		<section className="relative flex min-h-[100svh] items-center px-4 pt-16 pb-16 sm:px-6 lg:px-8">
 			<Spotlight
 				className="bg-primary/30 blur-3xl"
 				size={400}
@@ -34,8 +35,8 @@ export function Hero() {
 				className="pointer-events-none absolute inset-0"
 				style={{
 					backgroundImage: `
-						linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-						linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+						linear-gradient(var(--grid-line) 1px, transparent 1px),
+						linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)
 					`,
 					backgroundSize: "40px 40px",
 					maskImage:
@@ -61,6 +62,7 @@ export function Hero() {
 							{techBadges.map((badge) => (
 								<div
 									key={badge.label}
+									translate="no"
 									className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-card/80 border border-border/60 text-xs font-mono shadow-sm backdrop-blur-sm"
 								>
 									<span className={`h-2 w-2 rounded-full ${badge.color}`} />
@@ -70,8 +72,8 @@ export function Hero() {
 						</div>
 
 						{/* Heading */}
-						<h1 className="mb-5 font-bold tracking-tight animate-fade-in-up delay-200">
-							<span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-foreground">
+						<h1 className="mb-5 font-serif font-bold tracking-tight animate-fade-in-up delay-200">
+							<span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-foreground text-balance">
 								{t("hero.greeting.prefix")}
 							</span>
 							<TypingText
@@ -79,9 +81,14 @@ export function Hero() {
 								delay={500}
 								duration={50}
 								loop={false}
+								translate="no"
 								className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-primary"
 							>
-								<TypingTextCursor className="ml-1 h-12! w-1! rounded-full" />
+								{/* Sized in em so it tracks the responsive heading scale. */}
+								<TypingTextCursor
+									className="ml-1.5 rounded-full"
+									style={{ width: "0.05em" }}
+								/>
 							</TypingText>
 						</h1>
 
@@ -101,9 +108,11 @@ export function Hero() {
 								href="https://www.linkedin.com/in/ignaciogomezskamelka"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-[background-color,transform] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100"
-								aria-label="LinkedIn"
+								className="p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-[background-color,transform] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 							>
+								<span className="sr-only" translate="no">
+									LinkedIn
+								</span>
 								<svg
 									className="h-5 w-5"
 									fill="currentColor"
@@ -117,9 +126,11 @@ export function Hero() {
 								href="https://github.com/nachoogomez"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-[background-color,transform] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100"
-								aria-label="GitHub"
+								className="p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-[background-color,transform] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 							>
+								<span className="sr-only" translate="no">
+									GitHub
+								</span>
 								<svg
 									className="h-5 w-5"
 									fill="currentColor"
@@ -131,9 +142,9 @@ export function Hero() {
 							</a>
 							<a
 								href="mailto:ignaciogomezdev@gmail.com"
-								className="p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-[background-color,transform] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100"
-								aria-label="Email"
+								className="p-3 rounded-lg bg-secondary hover:bg-secondary/80 transition-[background-color,transform] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 							>
+								<span className="sr-only">Email</span>
 								<Mail className="h-5 w-5" aria-hidden="true" />
 							</a>
 						</div>
@@ -142,17 +153,19 @@ export function Hero() {
 						<div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-700">
 							<a
 								href="#contact"
-								className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+								className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-[background-color,transform,box-shadow] hover:scale-105 hover:shadow-lg hover:shadow-primary/25 motion-reduce:hover:scale-100 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 							>
 								{t("hero.connect")}
-								<span className="font-light opacity-80">+</span>
+								<span className="font-light opacity-80" aria-hidden="true">
+									+
+								</span>
 							</a>
 							<a
-								href="/CV_Ignacio_Gomez_EN.pdf"
-								download="CV_Ignacio_Gomez_EN.pdf"
-								className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-all hover:scale-105"
+								href={CV_PATH}
+								download={CV_FILENAME}
+								className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-[background-color,transform] hover:scale-105 motion-reduce:hover:scale-100 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 							>
-								<Download className="h-4 w-4" />
+								<Download className="h-4 w-4" aria-hidden="true" />
 								{t("hero.downloadCV")}
 							</a>
 						</div>
@@ -160,8 +173,11 @@ export function Hero() {
 
 					{/* ── Right column — decorative stack panel ── */}
 					<div className="relative hidden lg:flex flex-col justify-center items-center min-h-[480px]">
-						{/* Watermark text */}
-						<div className="absolute inset-0 flex flex-col justify-center items-end select-none pointer-events-none overflow-hidden">
+						{/* Watermark text — decorative only */}
+						<div
+							aria-hidden="true"
+							className="absolute inset-0 flex flex-col justify-center items-end select-none pointer-events-none overflow-hidden"
+						>
 							<span className="text-[3rem] xl:text-[3.5rem] font-black uppercase tracking-widest text-foreground/[0.04] leading-none whitespace-nowrap">
 								SYSTEM ARCHITECT
 							</span>
@@ -217,6 +233,7 @@ export function Hero() {
 										{stackConfig.infrastructure.map((tech) => (
 											<span
 												key={tech}
+												translate="no"
 												className="px-2.5 py-1 rounded text-xs bg-secondary text-secondary-foreground font-mono"
 											>
 												{tech}
@@ -238,6 +255,7 @@ export function Hero() {
 										{stackConfig.backend.map((tech) => (
 											<span
 												key={tech}
+												translate="no"
 												className="px-2.5 py-1 rounded text-xs bg-secondary text-secondary-foreground font-mono"
 											>
 												{tech}

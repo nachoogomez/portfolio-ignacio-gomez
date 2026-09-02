@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type Theme = "dark" | "light" | "system";
+type ResolvedTheme = "dark" | "light";
 
 type ThemeProviderProps = {
 	children: React.ReactNode;
@@ -13,51 +14,66 @@ type ThemeProviderState = {
 	setTheme: (theme: Theme) => void;
 };
 
-const initialState: ThemeProviderState = {
-	theme: "system",
-	setTheme: () => null,
+const THEME_COLORS: Record<ResolvedTheme, string> = {
+	dark: "#0a0a0b",
+	light: "#f8f6f2",
 };
 
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+const DARK_QUERY = "(prefers-color-scheme: dark)";
+
+const ThemeProviderContext = createContext<ThemeProviderState | undefined>(
+	undefined,
+);
+
+const applyTheme = (resolved: ResolvedTheme) => {
+	const root = document.documentElement;
+	root.classList.remove("light", "dark");
+	root.classList.add(resolved);
+	document
+		.querySelector('meta[name="theme-color"]')
+		?.setAttribute("content", THEME_COLORS[resolved]);
+};
 
 export function ThemeProvider({
 	children,
 	defaultTheme = "system",
-	storageKey = "vite-ui-theme",
-	...props
+	storageKey = "portfolio-theme",
 }: ThemeProviderProps) {
-	const [theme, setTheme] = useState<Theme>(
-		() => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
-	);
+	const [theme, setTheme] = useState<Theme>(() => {
+		const stored = localStorage.getItem(storageKey);
+		return stored === "light" || stored === "dark" || stored === "system"
+			? stored
+			: defaultTheme;
+	});
 
 	useEffect(() => {
-		const root = window.document.documentElement;
-
-		root.classList.remove("light", "dark");
-
-		if (theme === "system") {
-			const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-				.matches
-				? "dark"
-				: "light";
-
-			root.classList.add(systemTheme);
+		if (theme !== "system") {
+			applyTheme(theme);
 			return;
 		}
 
-		root.classList.add(theme);
+		const query = window.matchMedia(DARK_QUERY);
+		const sync = () => applyTheme(query.matches ? "dark" : "light");
+
+		sync();
+		// Keep following the OS while "system" is selected — not just on reload.
+		query.addEventListener("change", sync);
+		return () => query.removeEventListener("change", sync);
 	}, [theme]);
 
-	const value = {
-		theme,
-		setTheme: (theme: Theme) => {
-			localStorage.setItem(storageKey, theme);
-			setTheme(theme);
-		},
-	};
+	const value = useMemo(
+		() => ({
+			theme,
+			setTheme: (next: Theme) => {
+				localStorage.setItem(storageKey, next);
+				setTheme(next);
+			},
+		}),
+		[theme, storageKey],
+	);
 
 	return (
-		<ThemeProviderContext.Provider {...props} value={value}>
+		<ThemeProviderContext.Provider value={value}>
 			{children}
 		</ThemeProviderContext.Provider>
 	);
@@ -66,8 +82,9 @@ export function ThemeProvider({
 export const useTheme = () => {
 	const context = useContext(ThemeProviderContext);
 
-	if (context === undefined)
+	if (context === undefined) {
 		throw new Error("useTheme must be used within a ThemeProvider");
+	}
 
 	return context;
 };

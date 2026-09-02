@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { type UseIsInViewOptions, useIsInView } from "@/hooks/use-is-in-view";
 import { getStrictContext } from "@/lib/get-strict-context";
+import { cn } from "@/lib/utils";
 
 type TypingTextContextType = {
 	isTyping: boolean;
@@ -140,12 +141,13 @@ function TypingTextCursor({
 
 	return (
 		<span
+			aria-hidden="true"
 			data-slot="typing-text-cursor"
-			className={isTyping ? "" : "animate-cursor-blink"}
+			className={cn(!isTyping && "animate-cursor-blink", className)}
 			style={{
 				display: "inline-block",
-				height: "16px",
-				transform: "translateY(2px)",
+				height: "0.85em",
+				transform: "translateY(0.08em)",
 				width: "1px",
 				backgroundColor: "currentColor",
 				...style,

@@ -36,7 +36,9 @@ Example:
 const toCamelCase = (str: string): string =>
 	str.replace(/-([a-z])/g, (_match, g: string) => g.toUpperCase());
 
-const parseValue = (value: string): any => {
+type ParsedValue = string | number | boolean | string[];
+
+const parseValue = (value: string): ParsedValue => {
 	if (value === "true") return true;
 	if (value === "false") return false;
 
@@ -49,7 +51,9 @@ const parseValue = (value: string): any => {
 };
 
 function parseArgs(): Partial<Bun.BuildConfig> {
-	const config: Partial<Bun.BuildConfig> = {};
+	// CLI flags are only known at runtime, so the config is assembled as an open
+	// record and narrowed to BuildConfig once, on return.
+	const config: Record<string, unknown> = {};
 	const args = process.argv.slice(2);
 
 	for (let i = 0; i < args.length; i++) {
@@ -58,8 +62,7 @@ function parseArgs(): Partial<Bun.BuildConfig> {
 		if (!arg.startsWith("--")) continue;
 
 		if (arg.startsWith("--no-")) {
-			const key = toCamelCase(arg.slice(5));
-			config[key] = false;
+			config[toCamelCase(arg.slice(5))] = false;
 			continue;
 		}
 
@@ -67,8 +70,7 @@ function parseArgs(): Partial<Bun.BuildConfig> {
 			!arg.includes("=") &&
 			(i === args.length - 1 || args[i + 1]?.startsWith("--"))
 		) {
-			const key = toCamelCase(arg.slice(2));
-			config[key] = true;
+			config[toCamelCase(arg.slice(2))] = true;
 			continue;
 		}
 
@@ -86,14 +88,17 @@ function parseArgs(): Partial<Bun.BuildConfig> {
 
 		if (key.includes(".")) {
 			const [parentKey, childKey] = key.split(".");
-			config[parentKey] = config[parentKey] || {};
-			config[parentKey][childKey] = parseValue(value);
+			if (parentKey === undefined || childKey === undefined) continue;
+
+			const parent = (config[parentKey] ?? {}) as Record<string, ParsedValue>;
+			parent[childKey] = parseValue(value);
+			config[parentKey] = parent;
 		} else {
 			config[key] = parseValue(value);
 		}
 	}
 
-	return config;
+	return config as Partial<Bun.BuildConfig>;
 }
 
 const formatFileSize = (bytes: number): string => {

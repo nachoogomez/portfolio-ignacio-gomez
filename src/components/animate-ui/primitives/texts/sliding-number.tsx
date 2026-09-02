@@ -236,7 +236,7 @@ function SlidingNumber({
 	);
 
 	const numberStr = formatNumber(effectiveNumber);
-	const [newIntStrRaw, newDecStrRaw = ""] = numberStr.split(".");
+	const [newIntStrRaw = "", newDecStrRaw = ""] = numberStr.split(".");
 
 	const finalIntLength = padStart
 		? Math.max(

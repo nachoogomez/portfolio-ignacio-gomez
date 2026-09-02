@@ -1,12 +1,13 @@
 import { file, serve } from "bun";
 import path from "path";
+import { CV_FILENAME, CV_PATH } from "@/lib/cv";
 import index from "./index.html";
 
 const server = serve({
 	routes: {
 		// Serve static files from public directory
-		"/CV_Ignacio_Gomez_EN.pdf": new Response(
-			file(path.join(process.cwd(), "public", "CV_Ignacio_Gomez_EN.pdf")),
+		[CV_PATH]: new Response(
+			file(path.join(process.cwd(), "public", CV_FILENAME)),
 		),
 
 		// Serve index.html for all other routes

@@ -1,9 +1,30 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+const SUPPORTED_LANGUAGES = ["es", "en"] as const;
+type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
+
+const LANGUAGE_STORAGE_KEY = "portfolio-language";
+const DEFAULT_LANGUAGE: SupportedLanguage = "es";
+
 const resources = {
 	es: {
 		translation: {
+			// Shared
+			"common.loading": "Cargando…",
+
+			// Navigation
+			"nav.skills": "Skills",
+			"nav.projects": "Proyectos",
+			"nav.about": "Sobre mí",
+			"nav.contact": "Contacto",
+			"nav.skipToContent": "Saltar al contenido",
+			"nav.switchLanguage": "Switch to English",
+			"nav.changeTheme": "Cambiar tema",
+			"theme.light": "Claro",
+			"theme.dark": "Oscuro",
+			"theme.system": "Sistema",
+
 			// Hero section
 			"hero.greeting": "Hola, soy Ignacio Gomez",
 			"hero.greeting.prefix": "Hola, soy",
@@ -18,20 +39,15 @@ const resources = {
 			"about.title": "Sobre mí",
 			"about.subtitle": "De la infraestructura al código",
 			"about.paragraph1":
-				"Soy un desarrollador Full Stack en formación con una pasión genuina por la tecnología y el aprendizaje constante. Actualmente curso el último año de la carrera de Desarrollo de Software Full Stack, donde me especializo en el stack MERN y arquitecturas modernas.",
-			"about.paragraph1.highlight": "pasión genuina por la tecnología",
+				"Soy un desarrollador Full Stack en formación con una <strong>pasión genuina por la tecnología</strong> y el aprendizaje constante. Actualmente curso el último año de la carrera de Desarrollo de Software Full Stack, donde me especializo en el stack MERN y arquitecturas modernas.",
 			"about.paragraph2":
-				"Mi background en soporte IT me brindó una perspectiva única: entiendo tanto la infraestructura como las necesidades reales de los usuarios. Esta experiencia me permite desarrollar soluciones que no solo funcionan técnicamente, sino que realmente resuelven problemas.",
-			"about.paragraph2.highlight": "soporte IT",
+				"Mi background en <strong>soporte IT</strong> me brindó una perspectiva única: entiendo tanto la infraestructura como las necesidades reales de los usuarios. Esta experiencia me permite desarrollar soluciones que no solo funcionan técnicamente, sino que realmente resuelven problemas.",
 			"about.paragraph3":
-				"He trabajado con tecnologías como React, Node.js, NestJS, MongoDB y PostgreSQL, implementando desde interfaces de usuario hasta arquitecturas de microservicios. También tengo certificaciones en AWS y experiencia con Docker.",
-			"about.paragraph3.highlight1":
-				"React, Node.js, NestJS, MongoDB y PostgreSQL",
-			"about.paragraph3.highlight2": "AWS",
+				"He trabajado con tecnologías como <strong>React, Node.js, NestJS, MongoDB y PostgreSQL</strong>, implementando desde interfaces de usuario hasta arquitecturas de microservicios. También tengo certificaciones en <strong>AWS</strong> y experiencia con Docker.",
 			"about.paragraph4":
 				"Busco mi primera oportunidad como desarrollador Junior o Trainee para seguir creciendo, enfrentar nuevos desafíos y aportar mi proactividad y capacidad de resolución de problemas a un equipo dinámico.",
 			"about.skills.title": "Skills",
-			"about.skills.label": "HABILIDADES TÉCNICAS",
+			"about.skills.label": "Habilidades técnicas",
 			"about.skills.subtitle": "Experticia que construye el futuro",
 			"about.skill1.title": "Desarrollo Full Stack",
 			"about.skill1.description":
@@ -47,7 +63,8 @@ const resources = {
 				"Background sólido en infraestructura, redes y automatización de procesos",
 
 			// Projects section
-			"projects.title": "Proyectos Destacados",
+			"projects.title": "Proyectos destacados",
+			"projects.subtitle": "Del prototipo a producción",
 			"projects.featured": "Destacado",
 			"projects.code": "Código",
 			"projects.demo": "Demo",
@@ -77,15 +94,15 @@ const resources = {
 			"contact.email": "Email",
 			"contact.message": "Mensaje",
 			"contact.send": "Enviar mensaje",
-			"contact.sending": "Enviando...",
+			"contact.sending": "Enviando…",
 			"contact.success": "¡Mensaje enviado con éxito! Te responderé pronto.",
 			"contact.error":
-				"Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.",
+				"No se pudo enviar el mensaje. Revisá tu conexión e intentá de nuevo, o escribime a ignaciogomezdev@gmail.com.",
 			"contact.location": "Ubicación",
 			"contact.locationValue": "Argentina / Remoto",
-			"contact.namePlaceholder": "Tu nombre",
+			"contact.namePlaceholder": "Tu nombre…",
 			"contact.emailPlaceholder": "tu@email.com",
-			"contact.messagePlaceholder": "¿En qué puedo ayudarte?",
+			"contact.messagePlaceholder": "¿En qué puedo ayudarte?…",
 
 			// Footer section
 			"footer.copyright": "© 2025 IG. Todos los derechos reservados.",
@@ -93,6 +110,21 @@ const resources = {
 	},
 	en: {
 		translation: {
+			// Shared
+			"common.loading": "Loading…",
+
+			// Navigation
+			"nav.skills": "Skills",
+			"nav.projects": "Projects",
+			"nav.about": "About",
+			"nav.contact": "Contact",
+			"nav.skipToContent": "Skip to content",
+			"nav.switchLanguage": "Cambiar a español",
+			"nav.changeTheme": "Change theme",
+			"theme.light": "Light",
+			"theme.dark": "Dark",
+			"theme.system": "System",
+
 			// Hero section
 			"hero.greeting": "Hi, I'm Ignacio Gomez",
 			"hero.greeting.prefix": "Hi, I'm",
@@ -107,20 +139,15 @@ const resources = {
 			"about.title": "About me",
 			"about.subtitle": "From infrastructure to code",
 			"about.paragraph1":
-				"I am a Full Stack developer in training with a genuine passion for technology and constant learning. I am currently in my final year of the Full Stack Software Development degree, where I specialize in the MERN stack and modern architectures.",
-			"about.paragraph1.highlight": "genuine passion for technology",
+				"I am a Full Stack developer in training with a <strong>genuine passion for technology</strong> and constant learning. I am currently in my final year of the Full Stack Software Development degree, where I specialize in the MERN stack and modern architectures.",
 			"about.paragraph2":
-				"My background in IT support gave me a unique perspective: I understand both infrastructure and real user needs. This experience allows me to develop solutions that not only work technically, but actually solve problems.",
-			"about.paragraph2.highlight": "IT support",
+				"My background in <strong>IT support</strong> gave me a unique perspective: I understand both infrastructure and real user needs. This experience allows me to develop solutions that not only work technically, but actually solve problems.",
 			"about.paragraph3":
-				"I have worked with technologies such as React, Node.js, NestJS, MongoDB and PostgreSQL, implementing everything from user interfaces to microservices architectures. I also have AWS certifications and experience with Docker.",
-			"about.paragraph3.highlight1":
-				"React, Node.js, NestJS, MongoDB and PostgreSQL",
-			"about.paragraph3.highlight2": "AWS",
+				"I have worked with technologies such as <strong>React, Node.js, NestJS, MongoDB and PostgreSQL</strong>, implementing everything from user interfaces to microservices architectures. I also have <strong>AWS</strong> certifications and experience with Docker.",
 			"about.paragraph4":
 				"I am looking for my first opportunity as a Junior or Trainee developer to continue growing, face new challenges and contribute my proactivity and problem-solving skills to a dynamic team.",
 			"about.skills.title": "Skills",
-			"about.skills.label": "TECHNICAL SKILLS",
+			"about.skills.label": "Technical skills",
 			"about.skills.subtitle": "Expertise that builds the future",
 			"about.skill1.title": "Full Stack Development",
 			"about.skill1.description":
@@ -136,7 +163,8 @@ const resources = {
 				"Strong background in infrastructure, networking and process automation",
 
 			// Projects section
-			"projects.title": "Featured Projects",
+			"projects.title": "Featured projects",
+			"projects.subtitle": "From prototype to production",
 			"projects.featured": "Featured",
 			"projects.code": "Code",
 			"projects.demo": "Demo",
@@ -166,16 +194,16 @@ const resources = {
 			"contact.email": "Email",
 			"contact.message": "Message",
 			"contact.send": "Send message",
-			"contact.sending": "Sending...",
+			"contact.sending": "Sending…",
 			"contact.success":
 				"Message sent successfully! I'll get back to you soon.",
 			"contact.error":
-				"There was an error sending the message. Please try again.",
+				"The message could not be sent. Check your connection and try again, or email me at ignaciogomezdev@gmail.com.",
 			"contact.location": "Location",
-			"contact.locationValue": "Madrid, Spain / Remote",
-			"contact.namePlaceholder": "Your name",
+			"contact.locationValue": "Argentina / Remote",
+			"contact.namePlaceholder": "Your name…",
 			"contact.emailPlaceholder": "your@email.com",
-			"contact.messagePlaceholder": "How can I help you?",
+			"contact.messagePlaceholder": "How can I help you?…",
 
 			// Footer section
 			"footer.copyright": "© 2025 IG. All rights reserved.",
@@ -183,13 +211,59 @@ const resources = {
 	},
 };
 
+const isSupportedLanguage = (value: string): value is SupportedLanguage =>
+	SUPPORTED_LANGUAGES.includes(value as SupportedLanguage);
+
+const readStoredLanguage = (): SupportedLanguage | null => {
+	try {
+		const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+		return stored && isSupportedLanguage(stored) ? stored : null;
+	} catch {
+		return null;
+	}
+};
+
+/** Explicit choice wins; otherwise fall back to what the browser reports. */
+const detectLanguage = (): SupportedLanguage => {
+	const stored = readStoredLanguage();
+	if (stored) {
+		return stored;
+	}
+
+	const candidates = navigator.languages?.length
+		? navigator.languages
+		: [navigator.language];
+
+	for (const candidate of candidates) {
+		const base = candidate.split("-")[0]?.toLowerCase();
+		if (base && isSupportedLanguage(base)) {
+			return base;
+		}
+	}
+
+	return DEFAULT_LANGUAGE;
+};
+
 i18n.use(initReactI18next).init({
 	resources,
-	lng: "es", // idioma por defecto
-	fallbackLng: "es",
+	lng: detectLanguage(),
+	fallbackLng: DEFAULT_LANGUAGE,
+	supportedLngs: SUPPORTED_LANGUAGES,
 	interpolation: {
 		escapeValue: false,
 	},
 });
+
+const syncLanguage = (language: string) => {
+	document.documentElement.lang = language;
+	try {
+		localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+	} catch {
+		// Storage unavailable (private mode) — the language still applies for this session.
+	}
+};
+
+syncLanguage(i18n.language);
+i18n.on("languageChanged", syncLanguage);
 
 export default i18n;

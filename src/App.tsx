@@ -5,7 +5,7 @@ import { Home } from "./pages/Home";
 
 export function App() {
 	return (
-		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+		<ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
 			<Home />
 		</ThemeProvider>
 	);
